@@ -51,6 +51,7 @@
 (require 'helm-config)
 (require 'helm)
 (require 'ac-helm)
+(require 'helm-c-yasnippet)
 (require 'linum)
 (require 'magit)
 (require 'dash)
@@ -86,7 +87,39 @@
 
 ;; Other Setup
 ;; auto-complete
+(defvar ac-dir (expand-file-name "/.eamcs.d/elisp/auto-complete"))
+(add-to-list 'load-path ac-dir)
+(add-to-list 'load-path (concat ac-dir "/lib/ert"))
+(add-to-list 'load-path (concat ac-dir "/lib/fuzzy"))
+(add-to-list 'load-path (concat ac-dir "/lib/popup"))
+;; 適用するメジャーモードを加える
+(add-to-list 'ac-modes 'scss-mode)
+(add-to-list 'ac-modes 'web-mode)
+(add-to-list 'ac-modes 'coffee-mode)
+;; ベースとなるソースを指定
+(defvar my-ac-sources
+  '(ac-source-yasnippet
+    ac-source-abbrev
+    ac-source-dictionary
+    ac-source-words-in-same-mode-buffers))
+(defun ac-scss-mode-setup ()
+  (setq-default ac-sources (append '(ac-source-css-property) my-ac-sources)))
+(defun ac-web-mode-setup ()
+  (setq-default ac-sources my-ac-sources))
+(defun ac-coffee-mode-setup ()
+  (setq-default ac-sources my-ac-sources))
+(add-hook 'scss-mode-hook 'ac-scss-mode-setup)
+(add-hook 'web-mode-hook 'ac-web-mode-setup)
+(add-hook 'coffee-mode-hook 'ac-coffee-mode-setup)
+
 (global-auto-complete-mode t)
+
+;;; C-c / C-p で選択
+(setq ac-use-menu-map t)
+;;; yasnippetのbindingを指定するとエラー
+(setf (symbol-function 'yas-active-keys)
+      (lambda ()
+	(remove-duplicates (mapcan #'yas--table-all-keys (yas--get-snippet-tables)))))
 
 ;; yasnippet
 (setq yas-snippet-dirs
@@ -96,7 +129,15 @@
 	"/path/to/yasnippet/snippets"		;; the default collection
 	))
 (yas-global-mode 1)
-(yas-reload-all)
+(custom-set-variables '(yas-trigger-key "TAB"))
+;; 既存スニペットを挿入
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+;; 新規スニペットを作成するバッファを用意する
+(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+;; 既存スニペットを閲覧・編集する
+(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
+
+;(yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
 ;; helm
@@ -161,6 +202,11 @@
 	       '(pattern-transformer helm-buffers-list-pattern-transformer))
 )
 
+;; helm-c-yasnippet
+(setq helm-yas-space-match-any-greedy t)
+(global-set-key (kbd "C-c y") 'helm-yas-complete)
+(push '("emacs.+/snippets/" . snippet-mode) auto-mode-alist)
+(yas-reload-all)
 
 ;; compilation-filter
 (add-hook 'compilation-filter-hook
