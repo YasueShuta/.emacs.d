@@ -25,15 +25,15 @@
 
 ;; color-theme
 (add-to-list 'custom-theme-load-path
-	     "~/.emacs.d/elpa/color-theme-20080305.34/themes"
+	     "~/.emacs.d/elpa/color-theme-20080305.34/themes")
+(add-to-list 'custom-theme-load-path
 	     "~/.emacs.d/themes")
 (require 'color-theme)
-;(require 'color-theme-desert)
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     ;(load-theme 'desert t)
-     (load-theme 'zenburn t)
+     (load-theme 'desert t)
+     ;(load-theme 'zenburn t)
      ))
 
 
@@ -87,17 +87,31 @@
 (require 'jedi)
 (require 'w3m)
 (require 'ac-ispell)
+(require 'markdown-mode)
 ;; setup not yet
 ;(require 'emacs-droid)
+
+
+;; auto-load
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files" t)
+(autoload 'run-ruby "inf-ruby"
+  "Run an inferior Ruby process" t)
+(autoload 'inf-ruby-setup-keybindings "inf-ruby"
+  "Set local key defs for inf-ruby in ruby mode" t)
+
 
 ;; yes to y
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; auto-mode
-(setq auto-mode-alist 
-      (append '(("\\.rb$" . ruby-mode)) auto-mode-alist))
-(setq auto-mode-alist
-      (cons '("\\.rhtml$" . html-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rhtml$" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.text\\$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\$" . markdown-mode))
 
 ;; interpreter mode
 (setq interpreter-mode-alist
@@ -294,12 +308,12 @@
 (push '(slime-connection-list-mode) popwin:special-display-config)
 
 ;; ruby
-(autoload 'ruby-mode "ruby-mode"
-  "Mode for editing ruby source files" t)
-(autoload 'run-ruby "inf-ruby"
-  "Run an inferior Ruby process" t)
-(autoload 'inf-ruby-setup-keybindings "inf-ruby"
-  "Set local key defs for inf-ruby in ruby mode" t)
+;(autoload 'ruby-mode "ruby-mode"
+;  "Mode for editing ruby source files" t)
+;(autoload 'run-ruby "inf-ruby"
+;  "Run an inferior Ruby process" t)
+;(autoload 'inf-ruby-setup-keybindings "inf-ruby"
+;  "Set local key defs for inf-ruby in ruby mode" t)
 (setq inf-ruby-default-implementation "pry")
 (setq inf-ruby-eval-binding "Pry.toplevel_binding")
 
@@ -365,6 +379,9 @@
 
 ;; w3m
 (setq w3m-use-cookies t)
+
+;; markdown
+(setq markdown-command "/usr/bin/pandoc")
 
 ;; font and face
 ;(setq default-frame-alist (append '(
