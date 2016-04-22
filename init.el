@@ -51,6 +51,7 @@
 (require 'dash)
 (require 's)
 (require 'f)
+(require 'ht)
 (require 'lispxmp)
 (require 'slime)
 (require 'ac-slime)
