@@ -61,6 +61,7 @@
 (require 'flycheck)
 (require 'flycheck-pos-tip)
 (require 'linum)
+(require 'expand-region)
 (require 'magit)
 (require 'undo-tree)
 (require 'dash)
@@ -103,6 +104,17 @@
       (append '(("ruby" . ruby-mode)) interpreter-mode-alist))
 
 ;; Other Setup
+;; linum
+(linum-mode 1)
+;; expand-region
+(defun er/add-text-mode-expansions ()
+  (make-variable-buffer-local 'er/try-expand-list)
+  (setq er/try-expand-list (append
+			    er/try-expand-list
+			    '(mark-paragraph
+			      mark-page))))
+(add-hook 'text-mode-hook 'er/add-text-mode-expansions)
+
 ;; auto-complete
 (defvar ac-dir (expand-file-name "/.eamcs.d/elisp/auto-complete"))
 (add-to-list 'load-path ac-dir)
@@ -162,12 +174,12 @@
 ;; helm
 (progn
   (helm-mode 1)
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "C-x C-r") 'helm-recentf)
-  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-  (global-set-key (kbd "C-c i") 'helm-imenu)
-  (global-set-key (kbd "C-x b") 'helm-buffers-list)
+;  (global-set-key (kbd "M-x") 'helm-M-x)
+;  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+;  (global-set-key (kbd "C-x C-r") 'helm-recentf)
+;  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+;  (global-set-key (kbd "C-c i") 'helm-imenu)
+;  (global-set-key (kbd "C-x b") 'helm-buffers-list)
   (define-key helm-map (kbd "C-h") 'delete-backward-char)
   (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
   (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
@@ -377,6 +389,13 @@
 (global-set-key (kbd "C-c C-f") 'flycheck-next-error)
 (global-set-key (kbd "C-c M-f") 'flycheck-previous-error)
 (global-set-key (kbd "M-/") 'undo-tree-redo)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-c i") 'helm-imenu)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 
 (provide 'init)
 ;;; init.el ends here
