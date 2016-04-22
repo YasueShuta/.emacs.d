@@ -4,6 +4,8 @@
 ;; path
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-rails")
+(add-to-list 'load-path "~/.emacs.d/elisp/dash.el")
+(add-to-list 'load-path "~/.emacs.d/elisp/snippet.el")
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
 
@@ -45,6 +47,7 @@
 (require 'smart-compile)
 (require 'linum)
 (require 'magit)
+(require 'dash)
 (require 'slime)
 (require 'ac-slime)
 (require 'popwin)
@@ -54,11 +57,12 @@
 (require 'ruby-electric)
 (require 'ruby-block)
 (require 'rails)
+(require 'find-recursive)
+(require 'snippet)
 (require 'python)
 (require 'python-mode)
 (require 'jedi)
 (require 'w3m)
-
 
 ;; auto-mode
 (setq auto-mode-alist 
