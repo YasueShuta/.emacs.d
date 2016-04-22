@@ -3,6 +3,7 @@
 
 ;; path
 (add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/magit")
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-rails")
 (add-to-list 'load-path "~/.emacs.d/elisp/dash.el")
 (add-to-list 'load-path "~/.emacs.d/elisp/snippet.el")
@@ -44,7 +45,7 @@
 
 ;; require
 ;(require 'auto-install)
-(require 'cl)
+;(require 'cl)
 (require 'auto-complete)
 (require 'auto-complete-config)
 (require 'yasnippet)
@@ -225,6 +226,9 @@
 	     (inf-ruby-auto-enter)
 ))
 
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; Emacs Lisp
 
 (add-hook 'emacs-lisp-mode-hook
@@ -357,3 +361,8 @@
 		   (interactive)
 		   (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c C-x C-g") 'magit-status)
+(global-set-key (kbd "C-c C-f") 'flycheck-next-error)
+(global-set-key (kbd "C-c M-f") 'flycheck-previous-error)
+
+(provide 'init)
+;;; init.el ends here
