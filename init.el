@@ -64,6 +64,7 @@
 (require 'popwin)
 (require 'ruby-mode)
 (require 'inf-ruby)
+(require 'ac-inf-ruby)
 (require 'rcodetools)
 (require 'ruby-electric)
 (require 'ruby-block)
@@ -72,8 +73,12 @@
 (require 'snippet)
 (require 'python)
 (require 'python-mode)
+(require 'ac-python)
 (require 'jedi)
 (require 'w3m)
+(require 'ac-ispell)
+;; setup not yet
+;(require 'emacs-droid)
 
 ;; auto-mode
 (setq auto-mode-alist 
