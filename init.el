@@ -50,6 +50,7 @@
 (require 'magit)
 (require 'dash)
 (require 's)
+(require 'f)
 (require 'lispxmp)
 (require 'slime)
 (require 'ac-slime)
