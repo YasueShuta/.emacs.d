@@ -54,6 +54,8 @@
 (require 'helm)
 (require 'ac-helm)
 (require 'helm-c-yasnippet)
+(require 'flycheck)
+(require 'flycheck-pos-tip)
 (require 'linum)
 (require 'magit)
 (require 'dash)
@@ -228,7 +230,10 @@
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
+(eval-after-load 'flycheck
+  '(custom-set-variables
+    '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+    
 ;; Emacs Lisp
 
 (add-hook 'emacs-lisp-mode-hook
