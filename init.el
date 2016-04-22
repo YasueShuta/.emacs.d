@@ -24,13 +24,17 @@
 
 
 ;; color-theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/color-theme-20080305.34/themes")
+(add-to-list 'custom-theme-load-path
+	     "~/.emacs.d/elpa/color-theme-20080305.34/themes"
+	     "~/.emacs.d/themes")
 (require 'color-theme)
 ;(require 'color-theme-desert)
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (load-theme 'desert t)))
+     ;(load-theme 'desert t)
+     (load-theme 'zenburn t)
+     ))
 
 
 ;; japanese
