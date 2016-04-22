@@ -150,3 +150,15 @@ slime/contrib/swank-jolt.k
 slime/dir
 slime/slime.info
 slime/swank.asd
+elisp/dash.el/.travis.yml
+elisp/dash.el/Cask
+elisp/dash.el/create-docs.sh
+elisp/dash.el/dash-template.texi
+elisp/dash.el/dash.info
+elisp/dash.el/dash.texi
+elisp/dash.el/dev/.nosearch
+elisp/dash.el/pre-commit.sh
+elisp/dash.el/readme-template.md
+elisp/dash.el/run-tests.sh
+elisp/dash.el/run-travis-ci.sh
+elisp/dash.el/watch-tests.watchr
