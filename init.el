@@ -64,6 +64,8 @@
 (require 'linum)
 (require 'expand-region)
 (require 'magit)
+(require 'gitconfig-mode)
+(require 'gitignore-mode)
 (require 'undo-tree)
 (require 'projectile)
 (require 'helm-projectile)
