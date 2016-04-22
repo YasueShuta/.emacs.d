@@ -6,6 +6,11 @@
 *.*~
 *~
 
+# markdown
+*.md
+README
+Makefile
+
 # ruby file
 *.rb
 
@@ -186,3 +191,18 @@ yasnippet/doc/stylesheets/styles.css
 yasnippet/snippets/
 yasnippet/yasmate/
 elpa/seq-2.15/ChangeLog
+elisp/cider/.projectile
+elisp/cider/Cask
+elisp/cider/Vagrantfile
+elisp/cider/doc/cider-refcard.pdf
+elisp/cider/doc/cider-refcard.tex
+elisp/cider/doc/css/extra.css
+elisp/cider/doc/favicon.ico
+elisp/cider/doc/images/cider_debugger.gif
+elisp/cider/logo/cider-logo-mug.svg
+elisp/cider/logo/cider-logo-square.svg
+elisp/cider/logo/cider-logo.ai
+elisp/cider/logo/cider-logo.svg
+elisp/cider/logo/favicon.ico
+elisp/cider/test/run-tests
+elisp/cider/vagrant/provision.sh
