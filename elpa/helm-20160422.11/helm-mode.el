@@ -1216,3 +1216,5 @@ Note: This mode is incompatible with Emacs23."
 ;; End:
 
 ;;; helm-mode.el ends here
+
+
