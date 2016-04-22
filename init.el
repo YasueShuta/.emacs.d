@@ -65,10 +65,13 @@
 (require 'expand-region)
 (require 'magit)
 (require 'undo-tree)
+(require 'projectile)
+(require 'helm-projectile)
 (require 'dash)
 (require 's)
 (require 'f)
 (require 'ht)
+(require 'smartparens-config)
 (require 'lispxmp)
 (require 'slime)
 (require 'ac-slime)
@@ -275,6 +278,9 @@
 ;; undo-tree
 (global-undo-tree-mode t)
 
+;; smartparen
+(smartparens-global-mode t)
+
 ;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook
 	  '(lambda ()
@@ -389,12 +395,17 @@
 ;; markdown
 (setq markdown-command "/usr/bin/pandoc")
 
-;; clojure and cider
-(defvar clojure-minor-modes '(paredit-mode
+;; paredit and rainbow-delimiters
+(defvar my-lisp-minor-modes '(paredit-mode
 			      rainbow-delimiters-mode))
-(dolist (mode clojure-minor-modes)
+(dolist (mode my-lisp-minor-modes)
   (add-hook 'clojure-mode-hook mode)
-  (add-hook 'cider-repl-mode-hook mode))
+  (add-hook 'cider-repl-mode-hook mode)
+  (add-hook 'lisp-mode-hook mode)
+  (add-hook 'lisp-interaction-mode-hook mode)
+  (add-hook 'emacs-lisp-mode-hook mode)
+  )
+
 ;; font and face
 ;(setq default-frame-alist (append '(
 ;				    (foreground-color . "gray") ;
