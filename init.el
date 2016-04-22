@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/emacs-rails")
 (add-to-list 'load-path "~/.emacs.d/elisp/dash.el")
 (add-to-list 'load-path "~/.emacs.d/elisp/snippet.el")
+(add-to-list 'load-path "~/.emacs.d/yasnippet")
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
 
@@ -45,6 +46,7 @@
 ;(require 'auto-install)
 (require 'auto-complete)
 (require 'auto-complete-config)
+(require 'yasnippet)
 (require 'smart-compile)
 (require 'helm-config)
 (require 'helm)
@@ -85,6 +87,17 @@
 ;; Other Setup
 ;; auto-complete
 (global-auto-complete-mode t)
+
+;; yasnippet
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"			;; personal snippets
+	"/path/to/some/collection/"		;; foo-mode and bar-mode snippet collection
+	"/path/to/yasnippet/yasmate/snippets"	;; the yasmate collection
+	"/path/to/yasnippet/snippets"		;; the default collection
+	))
+(yas-global-mode 1)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 ;; helm
 (progn
