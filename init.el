@@ -179,3 +179,4 @@
 		'(lambda nil
 		   (interactive)
 		   (find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "C-c C-x C-g") 'magit-status)
