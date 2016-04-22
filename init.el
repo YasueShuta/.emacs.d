@@ -44,6 +44,7 @@
 
 ;; require
 ;(require 'auto-install)
+(require 'cl)
 (require 'auto-complete)
 (require 'auto-complete-config)
 (require 'yasnippet)
@@ -79,6 +80,9 @@
 (require 'ac-ispell)
 ;; setup not yet
 ;(require 'emacs-droid)
+
+;; yes to y
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; auto-mode
 (setq auto-mode-alist 
@@ -129,6 +133,8 @@
 ;; yasnippet
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"			;; personal snippets
+	"~/.emacs.d/yasnippet/yasmate/snippets"
+	"~/.emacs.d/yasnippet/snippets"
 	"/path/to/some/collection/"		;; foo-mode and bar-mode snippet collection
 	"/path/to/yasnippet/yasmate/snippets"	;; the yasmate collection
 	"/path/to/yasnippet/snippets"		;; the default collection
