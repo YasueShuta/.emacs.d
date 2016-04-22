@@ -15,6 +15,9 @@
 *.pym
 .python-environments/*
 
+# color-theme download
+themes_download/
+
 # other file
 *.txt
 *.png
