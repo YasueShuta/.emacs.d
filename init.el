@@ -42,12 +42,15 @@
 
 
 ;; require
+;(require 'auto-install)
 (require 'auto-complete)
 (require 'auto-complete-config)
 (require 'smart-compile)
 (require 'linum)
 (require 'magit)
 (require 'dash)
+(require 's)
+(require 'lispxmp)
 (require 'slime)
 (require 'ac-slime)
 (require 'popwin)
@@ -84,13 +87,21 @@
 	     (inf-ruby-auto-enter)
 ))
 
+;; Emacs Lisp
+
+(add-hook 'emacs-lisp-mode-hook
+	  '(lambda ()
+	     (define-key emacs-lisp-mode-map "\C-c\C-p" 'lispxmp)
+	     (define-key emacs-lisp-mode-map "\C-m" 'newline-and-indent)
+	     ))
+
 ;; Common Lisp
 ;;(setq inferior-lisp-program "ccl")
 (setq inferior-lisp-program "clisp")
 
 (slime-setup '(slime-repl slime-fancy slime-banner))
 (add-hook 'lisp-mode-hook
-	  (lambda ()
+	  '(lambda ()
 	    (slime-mode t)
 	    (define-key lisp-mode-map (kbd "C-c C-s") 'slime)
 	    (define-key lisp-mode-map "\C-m" 'newline-and-indent)
