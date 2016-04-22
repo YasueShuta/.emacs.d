@@ -46,6 +46,9 @@
 (require 'auto-complete)
 (require 'auto-complete-config)
 (require 'smart-compile)
+(require 'helm-config)
+(require 'helm)
+(require 'ac-helm)
 (require 'linum)
 (require 'magit)
 (require 'dash)
@@ -82,6 +85,9 @@
 ;; Other Setup
 ;; auto-complete
 (global-auto-complete-mode t)
+
+;; helm
+(define-key helm-map (kbd "M-x") 'helm-M-x)
 
 ;; compilation-filter
 (add-hook 'compilation-filter-hook
@@ -213,6 +219,7 @@
 ;; smart-compile
 (global-set-key (kbd "C-x c") 'smart-compile)
 (global-set-key (kbd "C-x C-x") (kbd "C-x c C-m"))
+(global-set-key [f8] 'helm-mode)
 (global-set-key [f9] 'linum-mode)
 (global-set-key (kbd "C-x g") 'goto-line)
 (global-set-key (kbd "C-c C-x C-e")
