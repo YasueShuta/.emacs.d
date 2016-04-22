@@ -161,6 +161,9 @@
 
 (setq jedi:complete-on-dot t)
 
+
+;; w3m
+(setq w3m-use-cookies t)
 ;; font and face
 ;(setq default-frame-alist (append '(
 ;				    (foreground-color . "gray") ;
