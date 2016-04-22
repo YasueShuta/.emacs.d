@@ -58,6 +58,7 @@
 (require 'flycheck-pos-tip)
 (require 'linum)
 (require 'magit)
+(require 'undo-tree)
 (require 'dash)
 (require 's)
 (require 'f)
@@ -233,9 +234,12 @@
 (eval-after-load 'flycheck
   '(custom-set-variables
     '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
-    
-;; Emacs Lisp
 
+
+;; undo-tree
+(global-undo-tree-mode t)
+
+;; Emacs Lisp
 (add-hook 'emacs-lisp-mode-hook
 	  '(lambda ()
 	     (define-key emacs-lisp-mode-map "\C-c\C-p" 'lispxmp)
@@ -368,6 +372,7 @@
 (global-set-key (kbd "C-c C-x C-g") 'magit-status)
 (global-set-key (kbd "C-c C-f") 'flycheck-next-error)
 (global-set-key (kbd "C-c M-f") 'flycheck-previous-error)
+(global-set-key (kbd "M-/") 'undo-tree-redo)
 
 (provide 'init)
 ;;; init.el ends here
