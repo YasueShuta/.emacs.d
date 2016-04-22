@@ -1,0 +1,13 @@
+# バイトコンパイルファイル .elc
+*.elc
+
+# auto save file
+*.el~
+*.*~
+
+# ruby file
+*.rb
+
+# python file
+*.py
+*.pyc
