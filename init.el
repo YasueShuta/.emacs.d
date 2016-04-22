@@ -8,6 +8,7 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/dash.el")
 (add-to-list 'load-path "~/.emacs.d/elisp/snippet.el")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
+(add-to-list 'load-path "~/.emacs.d/elisp/cider")
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
 
@@ -88,6 +89,11 @@
 (require 'w3m)
 (require 'ac-ispell)
 (require 'markdown-mode)
+(require 'clojure-mode)
+(require 'paredit)
+(require 'cider)
+(require 'rainbow-delimiters)
+
 ;; setup not yet
 ;(require 'emacs-droid)
 
@@ -383,6 +389,12 @@
 ;; markdown
 (setq markdown-command "/usr/bin/pandoc")
 
+;; clojure and cider
+(defvar clojure-minor-modes '(paredit-mode
+			      rainbow-delimiters-mode))
+(dolist (mode clojure-minor-modes)
+  (add-hook 'clojure-mode-hook mode)
+  (add-hook 'cider-repl-mode-hook mode))
 ;; font and face
 ;(setq default-frame-alist (append '(
 ;				    (foreground-color . "gray") ;
