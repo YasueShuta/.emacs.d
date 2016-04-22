@@ -9,6 +9,10 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/snippet.el")
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (add-to-list 'load-path "~/.emacs.d/elisp/cider")
+(add-to-list 'load-path "~/.emacs.d/gist.el")
+(add-to-list 'load-path "~/.emacs.d/gh.el")
+(add-to-list 'load-path "~/.emacs.d/pcache")
+(add-to-list 'load-path "~/.emacs.d/logito")
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
 
@@ -66,6 +70,7 @@
 (require 'magit)
 (require 'gitconfig-mode)
 (require 'gitignore-mode)
+(require 'gist)
 (require 'undo-tree)
 (require 'projectile)
 (require 'helm-projectile)

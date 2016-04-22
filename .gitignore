@@ -9,7 +9,12 @@
 # markdown
 *.md
 README
+
+# Makefile
 Makefile
+
+# Cask
+Cask
 
 # ruby file
 *.rb
@@ -206,3 +211,14 @@ elisp/cider/logo/cider-logo.svg
 elisp/cider/logo/favicon.ico
 elisp/cider/test/run-tests
 elisp/cider/vagrant/provision.sh
+gh.el/.gitmodules
+gh.el/.travis.yml
+gh.el/docs/source/index.rst
+gh.el/docs/source/intro.rst
+gh.el/docs/source/issues.rst
+gh.el/gh-auto.in
+gh.el/tasks.org
+pcache/.bumpversion.cfg
+pcache/.ert-runner
+pcache/.travis.yml
+
