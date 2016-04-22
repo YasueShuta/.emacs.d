@@ -92,6 +92,7 @@
 (require 'ac-python)
 (require 'jedi)
 (require 'w3m)
+(require 'web-mode)
 (require 'ac-ispell)
 (require 'markdown-mode)
 (require 'clojure-mode)
