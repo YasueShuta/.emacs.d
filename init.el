@@ -3,6 +3,7 @@
 
 ;; path
 (add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/elisp/emacs-rails")
 (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/slime"))
 
@@ -52,6 +53,7 @@
 (require 'rcodetools)
 (require 'ruby-electric)
 (require 'ruby-block)
+(require 'rails)
 (require 'python)
 (require 'python-mode)
 (require 'jedi)
@@ -61,6 +63,8 @@
 ;; auto-mode
 (setq auto-mode-alist 
       (append '(("\\.rb$" . ruby-mode)) auto-mode-alist))
+(setq auto-mode-alist
+      (cons '("\\.rhtml$" . html-mode) auto-mode-alist))
 
 ;; interpreter mode
 (setq interpreter-mode-alist
@@ -136,7 +140,7 @@
 	     (set-face-foreground font-lock-type-face "LightSeaGreen")
 	     )
 )
-(global-font-lock-mode 1)
+;(global-font-lock-mode 1)
 
 (add-hook 'inf-ruby-mode-hook
 	  '(lambda ()
@@ -151,6 +155,21 @@
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
 
+;; rails
+(defun try-complete-abbrev (old)
+  (if (expand-abbrev) t nil))
+(setq hippie-expand-try-functions-list
+      '(try-compelte-abbrev
+	try-complete-file-name
+	try-expand-dabbrev))
+(setq rails-use-mongrel t)
+;;;(require 'rails)
+(add-hook 'rails-minar-mode
+	  '(lambda ()
+	     (define-key rails-minor-mode-map "\C-c\C-p" 'rails-lib:run-primary-switch)
+	     (define-key rails-minor-mode-map "\C-c\C-n" 'rails-lib:run-secondary-switch)
+	     (setf rails-api-root "/home/shuta/rails/doc/api")))
+
 ;; python-mode
 (add-hook 'python-mode-hook
 	  '(lambda () 
@@ -164,6 +183,7 @@
 
 ;; w3m
 (setq w3m-use-cookies t)
+
 ;; font and face
 ;(setq default-frame-alist (append '(
 ;				    (foreground-color . "gray") ;
